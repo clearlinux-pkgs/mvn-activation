@@ -4,17 +4,20 @@
 #
 Name     : mvn-activation
 Version  : 1.1.1
-Release  : 5
+Release  : 6
 URL      : https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.jar
 Source0  : https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.jar
 Source1  : https://repo1.maven.org/maven2/com/sun/activation/all/1.2.0/all-1.2.0.pom
 Source2  : https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.pom
-Source3  : https://repo1.maven.org/maven2/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar
-Source4  : https://repo1.maven.org/maven2/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.pom
+Source3  : https://repo1.maven.org/maven2/javax/activation/activation/1.1/activation-1.1.jar
+Source4  : https://repo1.maven.org/maven2/javax/activation/activation/1.1/activation-1.1.pom
+Source5  : https://repo1.maven.org/maven2/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar
+Source6  : https://repo1.maven.org/maven2/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.pom
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CDDL-1.0
 Requires: mvn-activation-data = %{version}-%{release}
+Requires: mvn-activation-license = %{version}-%{release}
 
 %description
 No detailed description available
@@ -27,11 +30,22 @@ Group: Data
 data components for the mvn-activation package.
 
 
+%package license
+Summary: license components for the mvn-activation package.
+Group: Default
+
+%description license
+license components for the mvn-activation package.
+
+
 %prep
+%setup -q -n META-INF
 
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-activation
+cp LICENSE.txt %{buildroot}/usr/share/package-licenses/mvn-activation/LICENSE.txt
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1.1
 cp %{SOURCE0} %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar
 
@@ -41,11 +55,17 @@ cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/com/sun/activation/all/
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1.1
 cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.pom
 
-mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0
-cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1
+cp %{SOURCE3} %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1
+cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/javax/activation/activation/1.1/activation-1.1.pom
 
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0
-cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.pom
+cp %{SOURCE5} %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar
+
+mkdir -p %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0
+cp %{SOURCE6} %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.pom
 
 
 %files
@@ -56,5 +76,11 @@ cp %{SOURCE4} %{buildroot}/usr/share/java/.m2/repository/javax/activation/javax.
 /usr/share/java/.m2/repository/com/sun/activation/all/1.2.0/all-1.2.0.pom
 /usr/share/java/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar
 /usr/share/java/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.pom
+/usr/share/java/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar
+/usr/share/java/.m2/repository/javax/activation/activation/1.1/activation-1.1.pom
 /usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar
 /usr/share/java/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-activation/LICENSE.txt
