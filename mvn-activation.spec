@@ -4,7 +4,7 @@
 #
 Name     : mvn-activation
 Version  : 1.1.1
-Release  : 6
+Release  : 7
 URL      : https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.jar
 Source0  : https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.jar
 Source1  : https://repo1.maven.org/maven2/com/sun/activation/all/1.2.0/all-1.2.0.pom
